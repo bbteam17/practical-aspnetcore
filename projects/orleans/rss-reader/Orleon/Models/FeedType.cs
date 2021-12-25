@@ -1,0 +1,5 @@
+﻿enum FeedType
+{
+    Atom,
+    Rss
+}
