@@ -69,6 +69,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "http-client", "..\..\projec
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orleans", "Orleans", "{976BC5D1-0FE3-4B47-B1F9-29546B49AA71}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PdfViewer", "PdfViewer", "{B77E5B0F-5737-4DD0-9A0B-3F51D239319D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pdf-viewer", "..\..\projects\mini\pdf-viewer\pdf-viewer.csproj", "{FE3056A4-6A99-4C47-B8F4-F2286BB32689}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +147,10 @@ Global
 		{40500900-8D5C-449D-8CE4-33F0C99CD393}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40500900-8D5C-449D-8CE4-33F0C99CD393}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40500900-8D5C-449D-8CE4-33F0C99CD393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE3056A4-6A99-4C47-B8F4-F2286BB32689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE3056A4-6A99-4C47-B8F4-F2286BB32689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE3056A4-6A99-4C47-B8F4-F2286BB32689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE3056A4-6A99-4C47-B8F4-F2286BB32689}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -180,6 +188,7 @@ Global
 		{AF79AA81-24D2-4BDB-938F-F82F7686DEFF} = {B879D79C-DA8F-4D81-B833-CFC380662DCB}
 		{38CC8F71-083F-49B9-BB7C-17B64362129C} = {976BC5D1-0FE3-4B47-B1F9-29546B49AA71}
 		{40500900-8D5C-449D-8CE4-33F0C99CD393} = {38CC8F71-083F-49B9-BB7C-17B64362129C}
+		{FE3056A4-6A99-4C47-B8F4-F2286BB32689} = {B77E5B0F-5737-4DD0-9A0B-3F51D239319D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C36FC90-C117-44C5-A591-D57468A4EDF2}
