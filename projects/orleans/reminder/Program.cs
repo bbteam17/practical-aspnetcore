@@ -141,7 +141,7 @@ public class HelloReminderGrain : Grain, IHelloArchive, IRemindable
         var r = await GetReminder(reminder);
 
         if (r is not object)
-            await RegisterOrUpdateReminder(reminder, TimeSpan.FromSeconds(1), repeatEvery);
+            await RegisterOrUpdateReminder(reminder, TimeSpan.FromMinutes(1), repeatEvery);
     }
 
     public async Task RemoveReminder(string reminder)

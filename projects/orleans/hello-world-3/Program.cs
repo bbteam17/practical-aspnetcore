@@ -77,7 +77,7 @@ public class HelloArchiveGrain : Grain, IHelloArchive
 
     public async Task<string> SayHello(string greeting)
     {
-        _archive.State.Greetings.Add(greeting);
+        _archive.State.Greetings.Add($"{_archive.State.Greetings.Count+1}.{greeting}");
 
         await _archive.WriteStateAsync();
 
