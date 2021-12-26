@@ -218,6 +218,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TicTacToe", "TicTacToe", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe", "orleansmainsamples\TicTacToe\TicTacToe.csproj", "{CD3D0FF0-6273-40DC-8C22-FE39385F5173}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TransportLayerSecurity", "TransportLayerSecurity", "{53259A8A-01FC-4177-A676-721D982AEF44}"
+	ProjectSection(SolutionItems) = preProject
+		orleansmainsamples\TransportLayerSecurity\README.md = orleansmainsamples\TransportLayerSecurity\README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TLS.Client", "orleansmainsamples\TransportLayerSecurity\TLS.Client\TLS.Client.csproj", "{B55E7F04-0E01-45AA-B098-7D60D97A1F57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TLS.Contracts", "orleansmainsamples\TransportLayerSecurity\TLS.Contracts\TLS.Contracts.csproj", "{E6EDFA13-7E5B-4F58-BB76-940856D8FFF1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TLS.Server", "orleansmainsamples\TransportLayerSecurity\TLS.Server\TLS.Server.csproj", "{463BD498-C22F-4450-8ECB-033155C14D6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -448,6 +459,18 @@ Global
 		{CD3D0FF0-6273-40DC-8C22-FE39385F5173}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD3D0FF0-6273-40DC-8C22-FE39385F5173}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD3D0FF0-6273-40DC-8C22-FE39385F5173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B55E7F04-0E01-45AA-B098-7D60D97A1F57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B55E7F04-0E01-45AA-B098-7D60D97A1F57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B55E7F04-0E01-45AA-B098-7D60D97A1F57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B55E7F04-0E01-45AA-B098-7D60D97A1F57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6EDFA13-7E5B-4F58-BB76-940856D8FFF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6EDFA13-7E5B-4F58-BB76-940856D8FFF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6EDFA13-7E5B-4F58-BB76-940856D8FFF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6EDFA13-7E5B-4F58-BB76-940856D8FFF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{463BD498-C22F-4450-8ECB-033155C14D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{463BD498-C22F-4450-8ECB-033155C14D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{463BD498-C22F-4450-8ECB-033155C14D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{463BD498-C22F-4450-8ECB-033155C14D6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -540,6 +563,10 @@ Global
 		{72FEE29A-74F3-4128-B16D-660AA96426FD} = {9FD1A3A1-25F3-4AC1-B58D-E8B8E9DE27A4}
 		{3DE46CC7-89D1-416C-A847-9CA03C63341E} = {6DFC1AE1-78EB-4215-956E-71B88CC14393}
 		{CD3D0FF0-6273-40DC-8C22-FE39385F5173} = {3DE46CC7-89D1-416C-A847-9CA03C63341E}
+		{53259A8A-01FC-4177-A676-721D982AEF44} = {6DFC1AE1-78EB-4215-956E-71B88CC14393}
+		{B55E7F04-0E01-45AA-B098-7D60D97A1F57} = {53259A8A-01FC-4177-A676-721D982AEF44}
+		{E6EDFA13-7E5B-4F58-BB76-940856D8FFF1} = {53259A8A-01FC-4177-A676-721D982AEF44}
+		{463BD498-C22F-4450-8ECB-033155C14D6A} = {53259A8A-01FC-4177-A676-721D982AEF44}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C36FC90-C117-44C5-A591-D57468A4EDF2}
