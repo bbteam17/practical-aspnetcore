@@ -22,7 +22,8 @@ var friend = grainFactory.GetGrain<IHelloGrain>("friend");
 // Call the grain and print the result to the console
 var result = await friend.SayHello("Good morning!"); 
 Console.WriteLine("\n\n{0}\n\n", result);
-
+var goodbye = await friend.SayGoodBye("xxx");
+Console.WriteLine($"\n\n{goodbye}\n\n");
 Console.WriteLine("Orleans is running.\nPress Enter to terminate...");
 Console.ReadLine();
 Console.WriteLine("Orleans is stopping...");

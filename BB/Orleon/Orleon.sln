@@ -229,6 +229,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TLS.Contracts", "orleansmai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TLS.Server", "orleansmainsamples\TransportLayerSecurity\TLS.Server\TLS.Server.csproj", "{463BD498-C22F-4450-8ECB-033155C14D6A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelloWorld", "HelloWorld", "{A04E0A5B-A112-4D86-B5B2-8424AE0A7531}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorld", "orleansmainsamples\HelloWorld\HelloWorld.csproj", "{665CD64A-7B28-4581-BFA2-B406EE146A91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -471,6 +475,10 @@ Global
 		{463BD498-C22F-4450-8ECB-033155C14D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{463BD498-C22F-4450-8ECB-033155C14D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{463BD498-C22F-4450-8ECB-033155C14D6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{665CD64A-7B28-4581-BFA2-B406EE146A91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{665CD64A-7B28-4581-BFA2-B406EE146A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{665CD64A-7B28-4581-BFA2-B406EE146A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{665CD64A-7B28-4581-BFA2-B406EE146A91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -567,6 +575,8 @@ Global
 		{B55E7F04-0E01-45AA-B098-7D60D97A1F57} = {53259A8A-01FC-4177-A676-721D982AEF44}
 		{E6EDFA13-7E5B-4F58-BB76-940856D8FFF1} = {53259A8A-01FC-4177-A676-721D982AEF44}
 		{463BD498-C22F-4450-8ECB-033155C14D6A} = {53259A8A-01FC-4177-A676-721D982AEF44}
+		{A04E0A5B-A112-4D86-B5B2-8424AE0A7531} = {6DFC1AE1-78EB-4215-956E-71B88CC14393}
+		{665CD64A-7B28-4581-BFA2-B406EE146A91} = {A04E0A5B-A112-4D86-B5B2-8424AE0A7531}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C36FC90-C117-44C5-A591-D57468A4EDF2}
