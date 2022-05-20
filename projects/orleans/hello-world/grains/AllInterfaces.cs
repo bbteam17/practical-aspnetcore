@@ -6,9 +6,9 @@ public interface IHello : Orleans.IGrainWithIntegerKey
     Task<string> SayHello(string greeting);
 }
 
-public interface IHelloArchive : Orleans.IGrainWithIntegerKey
+public interface IHelloArchive : Orleans.IGrainWithStringKey
 {
-    Task<string> SayHello(string greeting);
+    Task  AddArchive(string archive);
 
     Task<IEnumerable<string>> GetGreetings();
 }

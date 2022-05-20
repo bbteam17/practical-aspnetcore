@@ -8,15 +8,19 @@ public class HelloGrain : Grain, IHello
 {
     private readonly ILogger _logger;
 
-    public HelloGrain(ILogger<HelloGrain> logger)
+    private readonly IClusterClient client;
+    public HelloGrain(ILogger<HelloGrain> logger, IClusterClient client)
     {
         _logger = logger;
+        this.client = client;
     }  
 
-    Task<string> IHello.SayHello(string greeting)
+    async Task<string> IHello.SayHello(string greeting )
     {
-        _logger.LogInformation($"SayHello message received: greeting = '{greeting}'");
-        return Task.FromResult($"You said: '{greeting}', I say: Hello!");
+        _logger.LogInformation($" SayHello message received: greeting = '{greeting}'");
+         var history = client.GetGrain<IHelloArchive>($"{this.GetPrimaryKeyLong()}");
+         await  history.AddArchive($"{greeting}");
+        return await Task.FromResult($"HelloGrain => You said: '{greeting}', I say: Hello!");
     }
 }
 
@@ -29,16 +33,13 @@ public class HelloArchiveGrain : Grain, IHelloArchive
         _archive = archive;
     }
 
-    public async Task<string> SayHello(string greeting)
+    public async Task AddArchive(string archive)
     {
-        _archive.State.Greetings.Add(greeting);
-
+        _archive.State.Greetings.Add(archive);
         await _archive.WriteStateAsync();
-
-        return $"You said: '{greeting}', I say: Hello!";
     }
 
-    public Task<IEnumerable<string>> GetGreetings() => Task.FromResult<IEnumerable<string>>(_archive.State.Greetings);
+    public async Task<IEnumerable<string>> GetGreetings() => await Task.FromResult<IEnumerable<string>>(_archive.State.Greetings);
 }
 
 public class GreetingArchive

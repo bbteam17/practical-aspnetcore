@@ -7,11 +7,11 @@ using Orleans.Runtime;
 await new HostBuilder()
     .ConfigureServices(services =>
     {
-        services.AddSingleton<ClusterClientHostedService>();
-        services.AddSingleton<IHostedService>(_ => _.GetService<ClusterClientHostedService>()!);
-        services.AddSingleton(_ => _.GetService<ClusterClientHostedService>()!.Client);
+        services.AddSingleton<ConfigService>();
+        services.AddSingleton<IHostedService>(provider => provider.GetService<ConfigService>()!);
+        services.AddSingleton(provider => provider.GetService<ConfigService>()!.Client);
 
-        services.AddHostedService<HelloWorldClientHostedService>();
+        services.AddHostedService<SenderService>();
 
         services.Configure<ConsoleLifetimeOptions>(options =>
         {
@@ -25,42 +25,60 @@ await new HostBuilder()
     })
     .RunConsoleAsync();
 
-public class HelloWorldClientHostedService : IHostedService
+public class SenderService : IHostedService
 {
     private readonly IClusterClient _client;
 
-    public HelloWorldClientHostedService(IClusterClient client)
+    public SenderService(IClusterClient client)
     {
         _client = client;
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
+        Console.WriteLine($"*** *** ==> {nameof(SenderService)}.{nameof(StartAsync)} ...");
         // example of calling grains from the initialized client
-        var friend = _client.GetGrain<IHello>(0);
-        var response = await friend.SayHello("Good morning, my friend!");
+     
+        var friend1 = _client.GetGrain<IHello>(0);
+        var response = await friend1.SayHello($"{friend1.GetPrimaryKeyLong()} => Hallo!");
+        Console.WriteLine($"{response}");
+        response = await friend1.SayHello($"{friend1.GetPrimaryKeyLong()} => Hallo2");
+        Console.WriteLine($"{response}");
+
+        var friend2 = _client.GetGrain<IHello>(1);
+        response = await friend2.SayHello($"{friend2.GetPrimaryKeyLong()} => Hallo!");
+        Console.WriteLine($"{response}");
+        response = await friend2.SayHello($"{friend2.GetPrimaryKeyLong()} => Hallo2");
         Console.WriteLine($"{response}");
 
         // example of calling IHelloArchive grqain that implements persistence
-        var g = this._client.GetGrain<IHelloArchive>(0);
-        response = await g.SayHello("Good day!");
-        Console.WriteLine($"{response}");
+        var g = this._client.GetGrain<IHelloArchive>($"{friend1.GetPrimaryKeyLong()}");
+        var greetings = await g.GetGreetings() ;
+        Log(greetings.ToList());
 
-        response = await g.SayHello("Good evening!");
-        Console.WriteLine($"{response}");
+        g = this._client.GetGrain<IHelloArchive>($"{friend2.GetPrimaryKeyLong()}");
+          greetings = await g.GetGreetings();
+        Log(greetings.ToList());
+        // Console.WriteLine($"\nArchived greetings: {Utils.EnumerableToString(greetings,separator:"\n")}");
+    }
 
-        var greetings = await g.GetGreetings();
-        Console.WriteLine($"\nArchived greetings: {Utils.EnumerableToString(greetings)}");
+    private void Log(List<string> items)
+    {
+        Console.WriteLine("\n\n");
+        foreach (var item in items)
+        {
+            Console.WriteLine($" \n *** {item}");
+        }
     }
 
     public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 }
 
-public class ClusterClientHostedService : IHostedService
+public class ConfigService : IHostedService
 {
-    private readonly ILogger<ClusterClientHostedService> _logger;
+    private readonly ILogger<ConfigService> _logger;
 
-    public ClusterClientHostedService(ILogger<ClusterClientHostedService> logger, ILoggerProvider loggerProvider)
+    public ConfigService(ILogger<ConfigService> logger, ILoggerProvider loggerProvider)
     {
         _logger = logger;
         Client = new ClientBuilder()
@@ -69,16 +87,18 @@ public class ClusterClientHostedService : IHostedService
             .Build();
     }
 
-    public Task StartAsync(CancellationToken cancellationToken)
+    public async Task StartAsync(CancellationToken cancellationToken)
     {
+        Console.WriteLine($"*** *** ==>  {nameof(ConfigService)}.{nameof(ConfigService)} ...");
         var attempt = 0;
         var maxAttempts = 100;
         var delay = TimeSpan.FromSeconds(1);
-        return Client.Connect(async error =>
+
+        async Task<bool> retryFilter(Exception error)
         {
             if (cancellationToken.IsCancellationRequested)
             {
-                return false;
+                return await Task.FromResult(false);
             }
 
             if (++attempt < maxAttempts)
@@ -106,7 +126,8 @@ public class ClusterClientHostedService : IHostedService
 
                 return false;
             }
-        });
+        }
+        await Client.Connect(retryFilter);
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)
